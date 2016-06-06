@@ -128,7 +128,9 @@ endif
 
 OBJECTS := \
 	$(OBJDIR)/connection_factory.o \
+	$(OBJDIR)/nanomsg_factory.o \
 	$(OBJDIR)/os.o \
+	$(OBJDIR)/zmq_factory.o \
 	$(OBJDIR)/main.o \
 
 RESOURCES := \
@@ -190,7 +192,13 @@ endif
 $(OBJDIR)/connection_factory.o: ../../../src/example/connection_factory.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/nanomsg_factory.o: ../../../src/example/nanomsg_factory.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/os.o: ../../../src/example/os.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/zmq_factory.o: ../../../src/example/zmq_factory.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/main.o: ../../../src/example_main/main.cpp

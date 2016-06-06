@@ -5,6 +5,7 @@
 
 struct identifyable {
     virtual std::string identity() const = 0;
+    virtual std::string config() const = 0;
     ~identifyable() {}
 };
 
@@ -14,7 +15,7 @@ struct source : identifyable {
 };
 
 struct sink : identifyable {
-    virtual bool receive(std::string const &) = 0;
+    virtual bool send(std::string const &) = 0;
     virtual ~sink() {}
 };
 
