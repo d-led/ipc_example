@@ -2,6 +2,7 @@
 #include <iostream>
 #include <ios>
 #include <connection_factory.h>
+#include <nanomsg_factory.h>
 
 int main(int argc, char const *argv[]) {
     std::cout << "On windows: " << std::boolalpha << os::windows() << std::endl;
@@ -15,6 +16,14 @@ int main(int argc, char const *argv[]) {
         std::cout << "Source is: " << source->identity() << std::endl;
         sink->send("hi");
         std::cout<<"received: "<<source->receive()<<std::endl;
+
+        const char *n_connection_string = "ipc:///tmp/nreqrep";
+        auto n_source = create_nanomsg_source(n_connection_string);
+        auto n_sink = create_nanomsg_sink(n_connection_string);
+        std::cout << "Sink is: " << n_sink->identity() << std::endl;
+        std::cout << "Source is: " << n_source->identity() << std::endl;
+        n_sink->send("hi");
+        std::cout<<"received: "<<n_source->receive()<<std::endl;
     }
     catch (std::exception &e) {
         std::cerr << e.what() << std::endl;
