@@ -48,7 +48,8 @@ class zmq_source : public source {
   public:
     std::string receive() override {
         zmq::multipart_t request(pull);
-        return request.str();
+        request.pop();
+        return request.popstr();
     }
 
     std::string identity() const override { return "0mq:" + connection; }
