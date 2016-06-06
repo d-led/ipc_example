@@ -16,7 +16,7 @@ ifeq ($(config),debug_x32)
   TARGET = $(TARGETDIR)/test
   OBJDIR = ../../../obj/macosx/gmake/x32/Debug/test
   DEFINES += -D_DEBUG
-  INCLUDES +=
+  INCLUDES += -I../../../src/example
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m32 -g -std=c++14
@@ -45,7 +45,7 @@ ifeq ($(config),debug_x64)
   TARGET = $(TARGETDIR)/test
   OBJDIR = ../../../obj/macosx/gmake/x64/Debug/test
   DEFINES += -D_DEBUG
-  INCLUDES +=
+  INCLUDES += -I../../../src/example
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64 -g -std=c++14
@@ -74,7 +74,7 @@ ifeq ($(config),release_x32)
   TARGET = $(TARGETDIR)/test
   OBJDIR = ../../../obj/macosx/gmake/x32/Release/test
   DEFINES +=
-  INCLUDES +=
+  INCLUDES += -I../../../src/example
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m32 -O2 -std=c++14
@@ -103,7 +103,7 @@ ifeq ($(config),release_x64)
   TARGET = $(TARGETDIR)/test
   OBJDIR = ../../../obj/macosx/gmake/x64/Release/test
   DEFINES +=
-  INCLUDES +=
+  INCLUDES += -I../../../src/example
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64 -O2 -std=c++14
@@ -127,8 +127,9 @@ all: $(TARGETDIR) $(OBJDIR) prebuild prelink $(TARGET)
 endif
 
 OBJECTS := \
-	$(OBJDIR)/main.o \
+	$(OBJDIR)/connection_factory.o \
 	$(OBJDIR)/os.o \
+	$(OBJDIR)/main.o \
 
 RESOURCES := \
 
@@ -186,10 +187,13 @@ $(GCH): $(PCH)
 	$(SILENT) $(CXX) -x c++-header $(ALL_CXXFLAGS) -o "$@" -MF "$(@:%.gch=%.d)" -c "$<"
 endif
 
-$(OBJDIR)/main.o: ../../../src/example/main.cpp
+$(OBJDIR)/connection_factory.o: ../../../src/example/connection_factory.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/os.o: ../../../src/example/os.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/main.o: ../../../src/example_main/main.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 
