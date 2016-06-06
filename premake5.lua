@@ -4,7 +4,8 @@ zmq = assert(require('zeromq'))
 make_solution 'test'
 
 includedirs {
-    'src/example'
+    'src/example',
+    'deps/cppzmq',
 }
 
 zmq.dirs()

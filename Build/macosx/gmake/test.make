@@ -16,7 +16,7 @@ ifeq ($(config),debug_x32)
   TARGET = $(TARGETDIR)/test
   OBJDIR = ../../../obj/macosx/gmake/x32/Debug/test
   DEFINES += -D_DEBUG
-  INCLUDES += -I../../../src/example -I/usr/local/Cellar/zeromq/4.1.4/include
+  INCLUDES += -I../../../src/example -I../../../deps/cppzmq -I/usr/local/Cellar/zeromq/4.1.4/include
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m32 -g -std=c++14
@@ -45,7 +45,7 @@ ifeq ($(config),debug_x64)
   TARGET = $(TARGETDIR)/test
   OBJDIR = ../../../obj/macosx/gmake/x64/Debug/test
   DEFINES += -D_DEBUG
-  INCLUDES += -I../../../src/example -I/usr/local/Cellar/zeromq/4.1.4/include
+  INCLUDES += -I../../../src/example -I../../../deps/cppzmq -I/usr/local/Cellar/zeromq/4.1.4/include
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64 -g -std=c++14
@@ -74,7 +74,7 @@ ifeq ($(config),release_x32)
   TARGET = $(TARGETDIR)/test
   OBJDIR = ../../../obj/macosx/gmake/x32/Release/test
   DEFINES +=
-  INCLUDES += -I../../../src/example -I/usr/local/Cellar/zeromq/4.1.4/include
+  INCLUDES += -I../../../src/example -I../../../deps/cppzmq -I/usr/local/Cellar/zeromq/4.1.4/include
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m32 -O2 -std=c++14
@@ -103,7 +103,7 @@ ifeq ($(config),release_x64)
   TARGET = $(TARGETDIR)/test
   OBJDIR = ../../../obj/macosx/gmake/x64/Release/test
   DEFINES +=
-  INCLUDES += -I../../../src/example -I/usr/local/Cellar/zeromq/4.1.4/include
+  INCLUDES += -I../../../src/example -I../../../deps/cppzmq -I/usr/local/Cellar/zeromq/4.1.4/include
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
   ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64 -O2 -std=c++14
