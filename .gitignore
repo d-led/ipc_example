@@ -34,3 +34,4 @@ UpgradeLog*.htm
 zmqpluginuser/libzmq.dll
 nano/
 tmp/
+deps/nanomsg/build
