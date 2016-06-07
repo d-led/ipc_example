@@ -35,3 +35,5 @@ zmqpluginuser/libzmq.dll
 nano/
 tmp/
 deps/nanomsg/build
+
+*.opendb
