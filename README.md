@@ -7,7 +7,7 @@ This must not be a killer argument in case of modular design. If a middleware is
 This example is deliberately limited in scope. While the behavior (sync vs. async/buffering/etc..) is not defined in an abstraction,
 the `send` and `receive` methods of zeromq and nanomsg sockets are hidden behind a unified facade.
 
-On Windows the nanomsg ipc socket pair is selected. On other platforms - zeromq.
+On Windows the nanomsg ipc socket pair is selected. On other platforms - zeromq. The example first creates and uses a default socket, and then, explicitly, a nanomsg one.
 
 Windows:
 
