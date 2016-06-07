@@ -7,7 +7,8 @@ nanomsg.root = {
 
 nanomsg.lib = {
     osx = 'nanomsg',
-    win = 'nanomsg'
+    win = 'nanomsg',
+    lin = 'nanomsg'
 }
 
 nanomsg.dirs = function()
@@ -52,6 +53,11 @@ nanomsg.link = function()
     configuration 'windows'
         links {
             nanomsg.lib.win,
+        }
+    configuration 'linux'
+        links {
+            nanomsg.lib.lin,
+            'anl'
         }
     configuration '*'
 end

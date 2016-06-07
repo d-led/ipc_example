@@ -20,3 +20,24 @@ Sink is: nn:ipc:///tmp/nreqrep
 Source is: nn:ipc:///tmp/nreqrep
 received: hi
 ```
+
+Linux (nn statically linked and installed globally for simplicity):
+
+```
+On windows: false
+Sink is: 0mq:ipc:///tmp/reqrep
+Source is: 0mq:ipc:///tmp/reqrep
+received: hi
+received after reconnect: ho
+Sink is: nn:ipc:///tmp/nreqrep
+Source is: nn:ipc:///tmp/nreqrep
+received: hi
+```
+
+## Used in the project ##
+
+- [zeromq](http://zero.mq/)
+- [nanomsg](http://nanomsg.org/)
+- [premake](https://premake.github.io/) + some helpers
+- [cppzmq](https://github.com/zeromq/cppzmq)
+- [cppnanomsg](https://github.com/nanomsg/cppnanomsg)
