@@ -22,13 +22,15 @@ int main(int argc, char const *argv[]) {
         std::cout << "Source is: " << source->identity() << std::endl;
         sink->send("hi");
         std::cout << "received: " << source->receive() << std::endl;
-        // disconnect
-        source.reset();
-        sleep_s(1);
-        sink->send("ho");
-        sleep_s(1);
-        source = create_source(connection_string);
-        std::cout << "received after reconnect: " << source->receive() << std::endl;
+        if (!os::windows()) {
+            // disconnect now only with 0mq, as the nanomsg sink will block on send at the moment
+            source.reset();
+            sleep_s(1);
+            sink->send("ho");
+            sleep_s(1);
+            source = create_source(connection_string);
+            std::cout << "received after reconnect: " << source->receive() << std::endl;
+        }
 
         const char *n_connection_string = "ipc:///tmp/nreqrep";
         auto n_source = create_nanomsg_source(n_connection_string);
