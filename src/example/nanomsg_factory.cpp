@@ -50,9 +50,9 @@ class nanomsg_source : public source {
 };
 
 sink_ptr_t create_nanomsg_sink(std::string const &config) {
-    return std::move(std::make_unique<nanomsg_sink>(config));
+    return std::make_unique<nanomsg_sink>(config);
 }
 
 source_ptr_t create_nanomsg_source(std::string const &config) {
-    return std::move(std::make_unique<nanomsg_source>(config));
+    return std::make_unique<nanomsg_source>(config);
 }

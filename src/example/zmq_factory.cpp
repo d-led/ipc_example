@@ -58,9 +58,9 @@ class zmq_source : public source {
 };
 
 sink_ptr_t create_zmq_sink(std::string const &config) {
-    return std::move(std::make_unique<zmq_sink>(config, global_context()));
+    return std::make_unique<zmq_sink>(config, global_context());
 }
 
 source_ptr_t create_zmq_source(std::string const &config) {
-    return std::move(std::make_unique<zmq_source>(config, global_context()));
+    return std::make_unique<zmq_source>(config, global_context());
 }
