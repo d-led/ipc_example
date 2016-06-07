@@ -9,7 +9,7 @@ the `send` and `receive` methods of zeromq and nanomsg sockets are hidden behind
 
 On Windows the nanomsg ipc socket pair is selected. On other platforms - zeromq. The example first creates and uses a default socket, and then, explicitly, a nanomsg one.
 
-Windows:
+Windows ([zeromq 4.0.4](http://zeromq.org/distro:microsoft-windows) expected to be installed globally):
 
 ```
 On windows: true
