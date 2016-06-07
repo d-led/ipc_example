@@ -10,10 +10,6 @@ includedirs {
     'deps/cppnanomsg',
 }
 
-defines {
-    'ZMQ_HAS_RVALUE_REFS'
-}
-
 zmq.dirs()
 nn.dirs()
 
