@@ -37,3 +37,5 @@ tmp/
 deps/nanomsg/build
 
 *.opendb
+*.db
+*.db
