@@ -15,7 +15,7 @@ class nanomsg_sink : public sink {
 
   public:
     bool send(std::string const &m) override {
-        return push.send(m.c_str(), m.size() + 1, 0);
+        return !!push.send(m.c_str(), m.size() + 1, 0);
     }
 
     std::string identity() const override { return "nn:" + connection; }
@@ -27,7 +27,7 @@ class nanomsg_sink : public sink {
 class nanomsg_source : public source {
     std::string connection;
     nn::socket pull;
-    char buf[512];
+    char* buf = nullptr;
 
   public:
     nanomsg_source(std::string const &config)
@@ -37,10 +37,14 @@ class nanomsg_source : public source {
 
   public:
     std::string receive() override {
-        if (pull.recv(buf, sizeof(buf), 0) >= 0) {
-            return buf;
+      auto bytes = pull.recv(&buf, NN_MSG, 0);
+        if ( bytes < 0) {
+          return "";
         } else {
-            return "";
+          std::string res(buf, buf + bytes);
+          nn_freemsg(buf);
+          buf = nullptr;
+          return std::move(res);
         }
     }
 
