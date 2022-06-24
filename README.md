@@ -2,6 +2,8 @@
 
 Motivation: sometimes there is a discourse that 0mq unfortunately doesn't implement the *ipc* transport on Windows.
 
+UPD [2019+](https://github.com/zeromq/libzmq/issues/3691): [ZeroMQ supports IPC on Windows](https://github.com/zeromq/pyzmq/pull/1570)
+
 This must not be a killer argument in case of modular design. If a middleware is not available on a platform - use another one via configuration.
 
 This example is deliberately limited in scope. While the behavior (sync vs. async/buffering/etc..) is not defined in an abstraction,
